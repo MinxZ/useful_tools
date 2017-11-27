@@ -1,3 +1,9 @@
+docker ps
+docker ps -a
+docker image ls
+docker image prune
+docker container prune
+
 nvidia-docker run -it gcr.io/tensorflow/tensorflow:latest-gpu bash
 
 sudo apt-get update
@@ -11,6 +17,7 @@ sudo apt install \
   openssh-server\
   ssh\
   htop\
+  zip
 
 sudo apt autoremove
 
