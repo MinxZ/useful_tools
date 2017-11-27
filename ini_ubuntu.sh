@@ -1,4 +1,4 @@
-# Update ubuntu
+nvidia-docker run -it gcr.io/tensorflow/tensorflow:latest-gpu bash
 
 sudo apt-get update
 sudo apt-get upgrade
