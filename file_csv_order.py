@@ -1,7 +1,7 @@
 import shutil
 import pandas as pd
 import numpy as np
-y_train = pd.read_csv('train_labels.csv')
+y_train = pd.read_ csv('train_labels.csv')
 
 y_train = np.array(y_train)
 
