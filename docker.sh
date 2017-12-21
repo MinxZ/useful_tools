@@ -75,6 +75,8 @@ pip install -U scikit-image
 
 git config --global user.name "MinxZ"
 git clone https://github.com/MinxZ/Dog-Breed-Identification.git
+git clone -b <branch_name> https://github.com/MinxZ/Dog-Breed-Identification.git
+
 
 cd Dog-Breed-Identification
 bash main.sh
