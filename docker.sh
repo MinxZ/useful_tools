@@ -1,4 +1,6 @@
 
+chmod 400 *.pem
+ssh -i *.pem ec2-user@
 
 sudo docker ps
 sudo docker ps -a
