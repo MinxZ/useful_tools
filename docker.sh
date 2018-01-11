@@ -49,11 +49,10 @@ apt autoremove
 # install keras opencv tqdm
 
 pip install \
-	  opencv-python\
-	  keras\
-	  tqdm\
-		pydot\
-		shutil
+	  opencv-python \
+	  keras \
+	  tqdm \
+		pydot
 
 pip install -U scikit-image
 
@@ -76,6 +75,7 @@ pip install -U scikit-image
 # c.NotebookApp.password = 'sha1:b592a9cf2ec6:b99edb2fd3d0727e336185a0b0eab561aa533a43'  # this is the password hash that we generated earlier.
 
 git config --global user.name "MinxZ"
+git clone https://github.com/MinxZ/useful_tools.git
 git clone https://github.com/MinxZ/Dog-Breed-Identification.git
 git clone -b <branch_name> https://github.com/MinxZ/Dog-Breed-Identification.git
 
