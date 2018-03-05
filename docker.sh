@@ -1,87 +1,42 @@
-
 chmod 400 *.pem
 ssh -i *.pem ec2-user@
 
 sudo docker ps
 sudo docker ps -a
-sudo docker image ls
-sudo docker image prune
 sudo docker container prune
 
-# launches the latest TensorFlow GPU binary image in a Docker container.
-# In this Docker container, you can run TensorFlow programs in a Jupyter notebook:
+sudo docker image -a
+sudo docker rmi Image Image
 
-sudo nvidia-docker run -it -p 8888:8888 gcr.io/tensorflow/tensorflow:latest-gpu
+sudo docker system prune -a
 
-# On your local machine:
-# sudo ssh -i awsKeys.pem -L 443:127.0.0.1:8888 ubuntu@ec2-54-147-126-214.compute-1.amazonaws.com
-sudo ssh -i 443:127.0.0.1:8888 z@192.168.3.2
+# with share memory mount
+sudo docker pull ufoym/deepo
+sudo nvidia-docker run -it --ipc=host -v ~/data:/data -v ~/config:/config ufoym/deepo bash
 
-# # launches the latest TensorFlow GPU binary image in a Docker container
-# # from which you can run TensorFlow programs in a shell:
-#
-# sudo nvidia-docker run -it gcr.io/tensorflow/tensorflow:latest-gpu bash
+# with share memory mount and jupyter notebook support
+sudo docker pull ufoym/deepo:all-py36-jupyter
+sudo nvidia-docker run -it -p 8888:8888 --ipc=host -v ~/data:/data -v ~/config:/config  ufoym/deepo:all-py36-jupyter jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
 
-# Enter the container
 sudo docker ps
-sudo docker exec -it 333420737b94 /bin/bash
-
+sudo docker exec -it 8b65380dfaf4 /bin/bash
 # sudo docker exec -it <container name> /bin/bash
 
-apt-get update -y
-apt-get upgrade -y
-
-# install terminal tools
-apt install -y git \
-		wget \
-	  ncdu \
-    tmux \
-		htop \
-		zip \
-		vim \
-		openssl \
-		libsm6 \
-		libxrender1 \
-		libfontconfig1
-
+apt update -y
+apt upgrade -y
+apt install -y ncdu htop python3-tk
 apt autoremove
 
 # install keras opencv tqdm
 
-pip install \
-	  opencv-python \
-	  keras \
-	  tqdm \
-		pydot
-
-pip install -U scikit-image
-
-# # config jupyter notebook
-# mkdir ssl
-# cd ssl
-# openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout "cert.key" -out "cert.pem" -batch
-#
-# jupyter notebook --generate-config
-# vi ~/.jupyter/jupyter_notebook_config.py
-
-# You need to insert the following lines of Python code (e.g. at the start of the file):
-#
-# c = get_config()  # get the config object
-# c.NotebookApp.certfile = u'/home/ubuntu/ssl/cert.pem' # path to the certificate we generated
-# c.NotebookApp.keyfile = u'/home/ubuntu/ssl/cert.key' # path to the certificate key we generated
-# c.IPKernelApp.pylab = 'inline'  # in-line figure when using Matplotlib
-# c.NotebookApp.ip = '*'  # serve the notebooks locally
-# c.NotebookApp.open_browser = False  # do not open a browser window by default when using notebooks
-# c.NotebookApp.password = 'sha1:b592a9cf2ec6:b99edb2fd3d0727e336185a0b0eab561aa533a43'  # this is the password hash that we generated earlier.
-
+git config --global user.email "z670172581@icloud.com"
 git config --global user.name "MinxZ"
-git clone https://github.com/MinxZ/useful_tools.git
-git clone https://github.com/MinxZ/Dog-Breed-Identification.git
-git clone -b <branch_name> https://github.com/MinxZ/Dog-Breed-Identification.git
+
+git clone https://github.com/MinxZ/*********.git
+# git clone -b cyou https://github.com/Liaro/similar_search.git
 
 
 cd Dog-Breed-Identification
-bash main.sh
 
 git pull
 git add *
