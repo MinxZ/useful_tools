@@ -18,8 +18,8 @@ sudo nvidia-docker run -it --ipc=host -v ~/data:/data -v ~/config:/config ufoym/
 sudo docker pull ufoym/deepo:all-py36-jupyter
 sudo nvidia-docker run -it -p 8888:8888 --ipc=host -v ~/data:/data -v ~/config:/config  ufoym/deepo:all-py36-jupyter jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
 
-sudo docker ps
-sudo docker exec -it 8b65380dfaf4 /bin/bash
+sudo docker ps -a
+sudo docker exec -it determined_einstein /bin/bash
 # sudo docker exec -it <container name> /bin/bash
 
 apt update -y
