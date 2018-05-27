@@ -1,3 +1,4 @@
+
 chmod 400 *.pem
 ssh -i *.pem ec2-user@
 
@@ -5,22 +6,23 @@ sudo docker ps
 sudo docker ps -a
 sudo docker container prune
 
-sudo docker image -a
-sudo docker rmi Image Image
+sudo docker image ls -a
 
 sudo docker system prune -a
 
-# with share memory mount
-sudo docker pull ufoym/deepo
-sudo nvidia-docker run -it --ipc=host -v ~/data:/data -v ~/config:/config ufoym/deepo bash
-
+sudo docker pull ufoym/deepo:keras-py36-cu90
 # with share memory mount and jupyter notebook support
-sudo docker pull ufoym/deepo:all-py36-jupyter
-sudo nvidia-docker run -it -p 8888:8888 --ipc=host -v ~/data:/data -v ~/config:/config  ufoym/deepo:all-py36-jupyter jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
+sudo docker pull ufoym/deepo:all-jupyter-py36-cu90
+sudo nvidia-docker run -it -p 8888:8888 --ipc=host -v ~/data:/data -v ~/config:/config  ufoym/deepo:all-jupyter-py36-cu90 jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
 
 sudo docker ps -a
-sudo docker start determined_einstein
-sudo docker exec -it determined_einstein /bin/bash
+sudo docker start zen_keller
+sudo docker exec -it zen_keller /bin/bash
+
+sudo docker exec -it quirky_curran /bin/bash
+pip install tqdm
+
+
 # sudo docker exec -it <container name> /bin/bash
 
 apt update -y
@@ -43,3 +45,24 @@ git pull
 git add *
 git commit -m "add something"
 git push origin master
+
+
+docker aws
+sudo yum install -y docker
+sudo service docker start
+
+# If you have nvidia-docker 1.0 installed: we need to remove it and all existing GPU containers
+docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
+sudo yum remove nvidia-docker
+
+# Add the package repositories
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | \
+  sudo tee /etc/yum.repos.d/nvidia-docker.repo
+
+# Install nvidia-docker2 and reload the Docker daemon configuration
+sudo yum install -y nvidia-docker2
+sudo pkill -SIGHUP dockerd
+
+# Test nvidia-smi with the latest official CUDA image
+docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
