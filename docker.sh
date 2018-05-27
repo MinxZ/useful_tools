@@ -46,6 +46,8 @@ git add *
 git commit -m "add something"
 git push origin master
 
+dd
+
 
 docker aws
 sudo yum install -y docker
