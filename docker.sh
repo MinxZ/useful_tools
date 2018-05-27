@@ -1,3 +1,8 @@
+docker aws
+sudo yum install -y docker
+sudo service docker start
+
+
 chmod 400 *.pem
 ssh -i *.pem ec2-user@
 
@@ -5,22 +10,18 @@ sudo docker ps
 sudo docker ps -a
 sudo docker container prune
 
-sudo docker image -a
-sudo docker rmi Image Image
+sudo docker image ls -a
 
 sudo docker system prune -a
 
-# with share memory mount
-sudo docker pull ufoym/deepo
-sudo nvidia-docker run -it --ipc=host -v ~/data:/data -v ~/config:/config ufoym/deepo bash
-
+sudo docker pull ufoym/deepo:keras-py36-cu90
 # with share memory mount and jupyter notebook support
-sudo docker pull ufoym/deepo:all-py36-jupyter
-sudo nvidia-docker run -it -p 8888:8888 --ipc=host -v ~/data:/data -v ~/config:/config  ufoym/deepo:all-py36-jupyter jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
+sudo docker pull ufoym/deepo:all-jupyter-py36-cu90
+sudo nvidia-docker run -it -p 8888:8888 --ipc=host -v ~/data:/data -v ~/config:/config  ufoym/deepo:all-jupyter-py36-cu90 jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
 
 sudo docker ps -a
-sudo docker start determined_einstein
-sudo docker exec -it determined_einstein /bin/bash
+sudo docker start zen_keller
+sudo docker exec -it zen_keller /bin/bash
 # sudo docker exec -it <container name> /bin/bash
 
 apt update -y
