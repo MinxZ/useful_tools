@@ -36,7 +36,7 @@ git config --global user.email "z670172581@icloud.com"
 git config --global user.name "MinxZ"
 
 git clone https://github.com/MinxZ/*********.git
-# git clone -b cyou https://github.com/Liaro/similar_search.git
+git clone -b cyou https://github.com/Liaro/similar_search.git
 
 
 cd Dog-Breed-Identification
@@ -45,8 +45,6 @@ git pull
 git add *
 git commit -m "add something"
 git push origin master
-
-dd
 
 
 docker aws
