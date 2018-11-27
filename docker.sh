@@ -1,8 +1,24 @@
+# docker setup
+sudo docker ps
+sudo docker ps -a
+sudo docker system prune -a
+
+# with share memory mount and jupyter notebook support
+sudo docker system prune -a
+sudo docker pull ufoym/deepo:all-jupyter-py36-cu90
+sudo nvidia-docker run -it -p 8888:8888 --ipc=host -v ~/data:/data -v ~/config:/config  ufoym/deepo:all-jupyter-py36-cu90 jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
+
+# for cpu
+sudo docker pull ufoym/deepo:all-py36-jupyter-cpu
+sudo docker run -it -p 8888:8888 --ipc=host -v ~/data:/data  ufoym/deepo:all-py36-jupyter-cpu jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
+
+# Ubuntu set up
 apt update -y
 apt upgrade -y
-apt install -y ncdu htop python3-tk
 apt autoremove
-# install keras opencv tqdm
+apt install -y ncdu htop python3-tk tmux locate
+updatedb
+pip install tqdm opencv-python
 
 # github setup
 git config --global user.email "z670172581@icloud.com"
@@ -15,26 +31,10 @@ git push https://github.com/Liaro/similar_search.git
 git clone https://github.com/MinxZ/*********.git
 git clone -b cyou https://github.com/Liaro/similar_search.git
 
-
-# docker setup
-sudo docker ps
 sudo docker ps -a
-sudo docker system prune -a
-
-# with share memory mount and jupyter notebook support
-sudo docker pull ufoym/deepo:all-jupyter-py36-cu90
-sudo nvidia-docker run -it -p 8888:8888 --ipc=host -v ~/data:/data -v ~/config:/config  ufoym/deepo:all-jupyter-py36-cu90 jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
-
-# for cpu
-sudo docker pull ufoym/deepo:all-py36-jupyter-cpu
-sudo docker run -it -p 8888:8888 --ipc=host -v ~/data:/data  ufoym/deepo:all-py36-jupyter-cpu jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
-
-
-sudo docker ps -a
-
 # ubuntu
-sudo docker start zen_keller
-sudo docker exec -it zen_keller /bin/bash
+sudo docker start youthful_brahmagupta
+sudo nvidia-docker exec -it youthful_brahmagupta /bin/bash
 
 # mac
 sudo docker start practical_darwin

@@ -4,5 +4,5 @@ cd ~/.kaggle
 vim kaggle.json
 chmod 600 ~/.kaggle/kaggle.json
 
-cd ~
-kaggle competitions download -c imaterialist-challenge-fashion-2018
+cd /data
+kaggle datasets download -d camnugent/sandp500
