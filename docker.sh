@@ -29,7 +29,7 @@ git config credential.helper store
 git push https://github.com/Liaro/similar_search.git
 
 git clone https://github.com/MinxZ/*********.git
-git clone -b cyou https://github.com/Liaro/similar_search.git
+git clone -b tree_hyperparameters https://github.com/Liaro/dinos_sales_predict.git
 
 sudo docker ps -a
 # ubuntu
