@@ -1,5 +1,5 @@
 class Solution:
-    # simple 
+    # simple
     # def fib(self, N: int) -> int:
     #     def dp(n):
     #         if n == 0:
@@ -9,11 +9,12 @@ class Solution:
     #         return dp(n-1) + dp(n-2)
     #     return dp(N)
 
-    # memory 
+    # memory
     def fib(self, N: int) -> int:
         memo = dict()
         memo[0] = 0
         memo[1] = 1
+
         def dp(n):
             if n in memo:
                 return memo[n]
@@ -28,7 +29,7 @@ class Solution:
             return 0
         dp = [0 for i in range(N+1)]
         dp[1] = 1
-        for i in range(2,N+1):
+        for i in range(2, N+1):
             dp[i] = dp[i-1] + dp[i-2]
         return dp[N]
     # def fib(self, N):
@@ -43,5 +44,5 @@ class Solution:
     def fib(self, N: int) -> int:
         prev, curr = 0, 1
         for n in range(N):
-            prev, curr = curr, prev+ curr
+            prev, curr = curr, prev + curr
         return prev

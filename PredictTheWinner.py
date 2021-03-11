@@ -3,11 +3,11 @@ class Solution:
         if len(piles) == 1:
             return True
         n = len(piles)
-        dp = [[[0,0] for i in range(n)] for i in range(n)]
+        dp = [[[0, 0] for i in range(n)] for i in range(n)]
 
         for i in range(n):
             dp[i][i][0] = piles[i]
-        
+
         for l in range(2, n+1):
             for i in range(n-l+1):
                 j = i+l-1

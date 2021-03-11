@@ -1,11 +1,11 @@
 class Solution:
     def stoneGame(self, piles) -> bool:
         n = len(piles)
-        dp = [[[0,0] for i in range(n)] for i in range(n)]
+        dp = [[[0, 0] for i in range(n)] for i in range(n)]
 
         for i in range(n):
             dp[i][i][0] = piles[i]
-        
+
         for l in range(2, n+1):
             for i in range(n-l+1):
                 j = i+l-1
@@ -21,5 +21,3 @@ class Solution:
                     dp[i][j][1] = dp[i][j-1][0]
         res = dp[0][n-1]
         return res[0] - res[1] > 0
-
-                
